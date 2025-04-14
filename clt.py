@@ -3,10 +3,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import mode
 
+# This is using only stats and underlying selection process is completely random 
+# and in no way can be used to make any direct/indirect inferences for living systems.
+
 np.random.seed(42) # For reproducability
 population_size= 10_000
 
-# Skewed toward high efficiency (80% high efficiency, 20% low efficiency)
+# Skewed toward high (80% high efficiency, 20% low efficiency)
 high_efficiency=np.random.uniform(0.6,1.0 + 0.01,int(0.8*population_size))
 low_efficiency=np.random.uniform(0.1,0.6,int(0.2*population_size))
 population_high_skew=np.concatenate([low_efficiency,high_efficiency])
@@ -19,7 +22,7 @@ high_efficiency = np.random.uniform(0.6, 1 + 0.01, int(0.5 * population_size))
 low_efficiency = np.random.uniform(0.1, 0.6, int(0.5 * population_size))
 population_balanced = np.concatenate([low_efficiency,high_efficiency])
 
-sample_size=60
+sample_size=10
 no_of_samples=1000
 
 def sample_means_distribution(population,sample_size,no_of_samples):
@@ -31,24 +34,24 @@ low_skew_sample_means=sample_means_distribution(population_low_skew,sample_size,
 balanced_skew_sample_means=sample_means_distribution(population_balanced,sample_size,no_of_samples)
 
 datasets= [
-    (population_high_skew,"High Efficiency Skew(Population)"),
-    (high_skew_sample_means, "High Efficiency Skew(Sample Means)"),
-    (population_low_skew, "Low Efficiency Skew(Population)"),
-    (low_skew_sample_means, "Low Efficiency Skew(Sample Means)"),
-    (population_balanced, "Balanced Efficiency(Population)"),
-    (balanced_skew_sample_means, "Balanced Efficiency(Sample Means)"),
+    (population_high_skew,"High Skew(Population)"),
+    (high_skew_sample_means, "High Skew(Sample Means)"),
+    (population_low_skew, "Low Skew(Population)"),
+    (low_skew_sample_means, "Low Skew(Sample Means)"),
+    (population_balanced, "Balanced (Population)"),
+    (balanced_skew_sample_means, "Balanced (Sample Means)"),
 ]
 
-# plt.figure(figsize=(10,8))
-# for i , (population_data,title) in enumerate(datasets):
-#     plt.subplot(3,2,i+1)
-#     sns.histplot(population_data,bins=30,kde=True,color='C' + str(i % 3))
-#     plt.title(title)
-#     plt.xlabel("Efficiency")
-#     plt.ylabel("Frequency")
+plt.figure(figsize=(10,8))
+for i , (population_data,title) in enumerate(datasets):
+    plt.subplot(3,2,i+1)
+    sns.histplot(population_data,bins=30,kde=True,color='C' + str(i % 3))
+    plt.title(title)
+    plt.xlabel("Efficiency")
+    plt.ylabel("Frequency")
 
-# plt.tight_layout()
-# plt.show()
+plt.tight_layout()
+plt.show()
 
 results={}
 for i , (population_data,name) in enumerate(datasets):
