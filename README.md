@@ -1,2 +1,3 @@
 Central_Limit_Theoram
-![clt2](https://github.com/user-attachments/assets/2505384a-f814-4fee-886c-b0f00b28e4fb)
+
+![Figure_1](https://github.com/user-attachments/assets/41f4fe78-85f8-48e5-8a6f-78c23e5f93c0)
